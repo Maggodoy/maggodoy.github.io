@@ -1,0 +1,130 @@
+{
+  "profile": {
+    "name": "Magalí Daniela Godoy",
+    "role": "Functional Analyst | Quality Assurance | Project Management",
+    "bio": "Especialista en la construcción de casos de uso para migraciones de sistemas, optimización de procesos de negocio y aseguramiento de calidad con metodologías ágiles (Scrum/Kanban).",
+    "location": "Rosario, Argentina",
+    "links": {
+      "github": "https://github.com/Maggodoy",
+      "linkedin": "https://www.linkedin.com/in/maggodoy",
+      "email": "mailto:tuemail@ejemplo.com"
+    }
+  },
+  "columns": [
+    {
+      "id": "backlog",
+      "title": "📋 Backlog / Core Competencies",
+      "cards": [
+        {
+          "id": "card-skills-tech",
+          "title": "US-01: Stack Técnico & Herramientas",
+          "subtitle": "Ecosistema Tecnológico",
+          "roleTag": "All",
+          "tags": ["SQL", "React", "Node.js", "Git", "Postman"],
+          "description": "Como reclutador/equipo técnico, quiero conocer el stack de herramientas y lenguajes para validar la compatibilidad con proyectos de desarrollo e integración.",
+          "acceptanceCriteria": [
+            "Manejo de consultas SQL para análisis y validación de datos.",
+            "Desarrollo Fullstack (Bootcamp SoyHenry completado en Nov 2023).",
+            "Gestión de versiones con Git/GitHub y documentación de APIs."
+          ]
+        },
+        {
+          "id": "card-skills-agile",
+          "title": "US-02: Metodologías Ágiles & Gestión",
+          "subtitle": "Procesos & Frameworks",
+          "roleTag": "PM",
+          "tags": ["Scrum", "Kanban", "Gestión de Proyectos", "Kaizen"],
+          "description": "Como equipo de desarrollo, quiero contar con facilitación e implementación de marcos ágiles para asegurar entregas continuas y mejora de procesos.",
+          "acceptanceCriteria": [
+            "Creación y mantenimiento de Backlogs de Producto e Historias de Usuario.",
+            "Facilitación de ceremonias Scrum y gestión de tableros Kanban.",
+            "Enfoque en mejora continua mediante metodologías de optimización de procesos."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "todo",
+      "title": "🎯 To Do / Próximos Hitos & Certificaciones",
+      "cards": [
+        {
+          "id": "card-eng-b2",
+          "title": "US-03: Certificación B2 First Certificate",
+          "subtitle": "Competencia Profesional de Inglés",
+          "roleTag": "PM",
+          "tags": ["Inglés B2", "Certificación", "En Curso"],
+          "metrics": "Nivel B2 en preparación para proyectos internacionales",
+          "description": "Como profesional de TI, quiero consolidar mi nivel de inglés B2 First para coordinar requerimientos y comunicarme efectivamente con equipos globales.",
+          "acceptanceCriteria": [
+            "Comprensión y redacción de especificaciones técnicas en inglés.",
+            "Participación fluida en ceremonias ágiles e interacciones con stakeholders."
+          ]
+        },
+        {
+          "id": "card-pm-cert",
+          "title": "US-04: Transición & Certificación en Project Management",
+          "subtitle": "Gestión de Proyectos de Software",
+          "roleTag": "PM",
+          "tags": ["Project Management", "Agile Leadership", "Roadmaps"],
+          "description": "Como líder de proyecto, quiero estructurar planes de trabajo y roadmaps claros para garantizar la alineación de objetivos de negocio con las entregas del equipo.",
+          "acceptanceCriteria": [
+            "Definición de alcance, cronogramas y gestión de riesgos en proyectos TI.",
+            "Alineación entre equipos de negocio y desarrollo."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "inprogress",
+      "title": "⚙️ In Progress / Proyectos Activos",
+      "cards": [
+        {
+          "id": "card-active-qa",
+          "title": "US-05: Estrategias de Testing & QA Manual",
+          "subtitle": "Garantía de Calidad de Software",
+          "roleTag": "QA",
+          "tags": ["QA", "Manual Testing", "Test Cases", "Bug Tracking"],
+          "metrics": "Diseño exhaustivo de planes de prueba y casos de prueba",
+          "description": "Como QA Specialist, quiero diseñar ejecuciones de prueba estructuradas para detectar desviaciones antes del despliegue en producción.",
+          "acceptanceCriteria": [
+            "Elaboración de matrices de prueba y reporte de bugs con trazabilidad.",
+            "Validación de criterios de aceptación de Historias de Usuario."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "done",
+      "title": "🚀 Done / Experiencia & Logros Destacados",
+      "cards": [
+        {
+          "id": "card-fa-migration",
+          "title": "US-06: Levantamiento de Requerimientos y Migración de Sistemas",
+          "subtitle": "Análisis Funcional & Casos de Uso",
+          "roleTag": "Functional Analyst",
+          "tags": ["Análisis Funcional", "Casos de Uso", "Migración de Sistemas", "SQL"],
+          "metrics": "Modelado preciso de procesos para minimizar inconsistencias en la migración",
+          "description": "Como Analista Funcional, requerí documentar los procesos 'As-Is' y 'To-Be' para asegurar una transición sin interrupciones en la migración del sistema core.",
+          "acceptanceCriteria": [
+            "Redacción de Casos de Uso detallados y Reglas de Negocio.",
+            "Validación de datos mediante consultas SQL.",
+            "Coordinación entre usuarios clave y el equipo de desarrollo."
+          ]
+        },
+        {
+          "id": "card-henry-bootcamp",
+          "title": "US-07: Bootcamp Fullstack Development - SoyHenry",
+          "subtitle": "Formación Intensiva en Desarrollo Web",
+          "roleTag": "Developer",
+          "tags": ["Fullstack", "React", "Node.js", "Express", "PostgreSQL"],
+          "metrics": "+800 horas de programación e integración de proyectos end-to-end",
+          "description": "Como desarrolladora fullstack, completé una formación intensiva creando aplicaciones web completas utilizando el stack PERN/MERN.",
+          "acceptanceCriteria": [
+            "Desarrollo de proyecto integrador aplicando arquitectura en capas.",
+            "Graduación completada exitosamente el 17 de noviembre de 2023."
+          ]
+        }
+      ]
+    }
+  ]
+}

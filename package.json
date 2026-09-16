@@ -1,0 +1,28 @@
+{
+  "name": "porfolio",
+  "version": "1.0.0",
+  "description": "\"# Porfolio\" \r Arquitectura \r [ CAPA DE DATOS ]\r   └── src/data/boardData.json  --->  (Centraliza columnas, tarjetas, tags y modales)\r           │\r [ CAPA DE COMPONENTES UI (Astro / React + Tailwind CSS) ]\r   ├── Header & Filters Bar     --->  (Filtros dinámicos: QA, Functional Analyst, PM, Dev)\r   ├── Kanban Board (Layout)    --->  (CSS Grid en Desktop / Tabs-Swiper en Mobile)\r   ├── Kanban Column            --->  (To Do, In Progress, Done, Backlog)\r   ├── Kanban Card              --->  (Hitos, métricas de impacto, historias de usuario)\r   └── Card Modal Detail        --->  (Diálogo accesible para el detalle de cada tarjeta)\r           │\r [ COMPILACIÓN Y DESPLIEGUE (CI/CD) ]\r   └── Build Process            --->  (Generación de HTML/CSS estático puro)\r           │\r   └── GitHub + Vercel / Netlify --->  (CDN global, carga instantánea y SSL automático)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Maggodoy/maggodoy.github.io.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Maggodoy/maggodoy.github.io/issues"
+  },
+  "homepage": "https://github.com/Maggodoy/maggodoy.github.io#readme",
+  "dependencies": {
+    "astro": "^7.3.2"
+  },
+  "devDependencies": {
+    "@astrojs/tailwind": "^6.0.2",
+    "tailwindcss": "^3.4.0"
+  }
+}

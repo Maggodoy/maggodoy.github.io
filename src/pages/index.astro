@@ -1,0 +1,75 @@
+---
+import Layout from '../layouts/Layout.astro';
+import boardData from '../data/boardData.json';
+
+const { profile, columns } = boardData;
+---
+
+<Layout title={`${profile.name} | Porfolio Kanban`}>
+  <main class="max-w-7xl mx-auto px-4 py-8">
+    
+    <!-- Header del Perfil -->
+    <header class="mb-10 border-b border-slate-800 pb-6">
+      <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+        <div>
+          <h1 class="text-3xl font-bold tracking-tight text-white">{profile.name}</h1>
+          <p class="text-indigo-400 font-medium text-lg mt-1">{profile.role}</p>
+          <p class="text-slate-400 text-sm mt-2 max-w-2xl">{profile.bio}</p>
+        </div>
+        
+        <div class="flex items-center gap-3">
+          <a href={profile.links.linkedin} target="_blank" rel="noopener noreferrer" class="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-slate-200 rounded-lg text-sm font-medium transition-colors border border-slate-700">
+            LinkedIn
+          </a>
+          <a href={profile.links.github} target="_blank" rel="noopener noreferrer" class="px-4 py-2 bg-indigo-600 hover:bg-indigo-500 text-white rounded-lg text-sm font-medium transition-colors shadow-lg shadow-indigo-500/20">
+            GitHub
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <!-- Tablero Scrum/Kanban -->
+    <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 items-start">
+      {columns.map((column) => (
+        <div class="bg-slate-900/80 border border-slate-800 rounded-xl p-4 flex flex-col gap-4 shadow-sm">
+          <div class="flex items-center justify-between pb-2 border-b border-slate-800">
+            <h2 class="font-semibold text-slate-200 text-sm">{column.title}</h2>
+            <span class="bg-slate-800 text-slate-400 text-xs px-2 py-0.5 rounded-full border border-slate-700">
+              {column.cards.length}
+            </span>
+          </div>
+
+          <div class="flex flex-col gap-3">
+            {column.cards.map((card) => (
+              <article class="bg-slate-950 border border-slate-800/80 rounded-lg p-4 hover:border-slate-700 transition-all cursor-pointer group shadow-sm hover:shadow-indigo-500/5">
+                <div class="flex items-center justify-between gap-2 mb-2">
+                  <span class="text-xs font-mono text-indigo-400 font-semibold">{card.roleTag}</span>
+                  {card.metrics && (
+                    <span class="text-[10px] bg-emerald-950 text-emerald-400 border border-emerald-800/50 px-2 py-0.5 rounded">
+                      Métrica
+                    </span>
+                  )}
+                </div>
+
+                <h3 class="font-semibold text-slate-100 text-sm group-hover:text-indigo-300 transition-colors">
+                  {card.title}
+                </h3>
+                <p class="text-slate-400 text-xs mt-1">{card.subtitle}</p>
+
+                <!-- Tags -->
+                <div class="flex flex-wrap gap-1.5 mt-3">
+                  {card.tags.map((tag) => (
+                    <span class="text-[10px] bg-slate-900 text-slate-400 border border-slate-800 px-2 py-0.5 rounded-md">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      ))}
+    </section>
+
+  </main>
+</Layout>

@@ -1,128 +1,96 @@
+
 {
   "profile": {
     "name": "Magalí Daniela Godoy",
     "role": "Functional Analyst | Quality Assurance | Project Management",
-    "bio": "Especialista en la construcción de casos de uso para migraciones de sistemas, optimización de procesos de negocio y aseguramiento de calidad con metodologías ágiles (Scrum/Kanban).",
-    "location": "Rosario, Argentina",
+    "bio": "Especialista en la construcción de casos de uso para migraciones de sistemas, optimización de procesos de negocio y aseguramiento de calidad con metodologías ágiles.",
     "links": {
-      "github": "https://github.com/Maggodoy",
-      "linkedin": "https://www.linkedin.com/in/maggodoy",
-      "email": "mailto:tuemail@ejemplo.com"
+      "linkedin": "https://linkedin.com",
+      "github": "https://github.com"
     }
   },
   "columns": [
     {
       "id": "backlog",
-      "title": "📋 Backlog / Core Competencies",
+      "title": "TO DO / BACKLOG",
       "cards": [
         {
-          "id": "card-skills-tech",
-          "title": "US-01: Stack Técnico & Herramientas",
-          "subtitle": "Ecosistema Tecnológico",
-          "roleTag": "All",
-          "tags": ["SQL", "React", "Node.js", "Git", "Postman"],
-          "description": "Como reclutador/equipo técnico, quiero conocer el stack de herramientas y lenguajes para validar la compatibilidad con proyectos de desarrollo e integración.",
+          "key": "FA-101",
+          "type": "Story",
+          "roleTag": "FA",
+          "summary": "Casos de Uso para Migración de Sistemas",
+          "description": "Como Functional Analyst, quiero documentar los casos de uso para la migración de sistemas legados hacia microservicios, para garantizar la continuidad del negocio sin pérdida de datos.",
           "acceptanceCriteria": [
-            "Manejo de consultas SQL para análisis y validación de datos.",
-            "Desarrollo Fullstack (Bootcamp SoyHenry completado en Nov 2023).",
-            "Gestión de versiones con Git/GitHub y documentación de APIs."
-          ]
-        },
-        {
-          "id": "card-skills-agile",
-          "title": "US-02: Metodologías Ágiles & Gestión",
-          "subtitle": "Procesos & Frameworks",
-          "roleTag": "PM",
-          "tags": ["Scrum", "Kanban", "Gestión de Proyectos", "Kaizen"],
-          "description": "Como equipo de desarrollo, quiero contar con facilitación e implementación de marcos ágiles para asegurar entregas continuas y mejora de procesos.",
-          "acceptanceCriteria": [
-            "Creación y mantenimiento de Backlogs de Producto e Historias de Usuario.",
-            "Facilitación de ceremonias Scrum y gestión de tableros Kanban.",
-            "Enfoque en mejora continua mediante metodologías de optimización de procesos."
-          ]
+            "Matriz de trazabilidad de requisitos completada.",
+            "Diagramas de flujo de datos (DFD) actualizados.",
+            "Validación previa con los stakeholders aprobada."
+          ],
+          "storyPoints": 5,
+          "priority": "High",
+          "tags": ["Use Cases", "Migration", "UML"]
         }
       ]
     },
     {
-      "id": "todo",
-      "title": "🎯 To Do / Próximos Hitos & Certificaciones",
+      "id": "in_progress",
+      "title": "IN PROGRESS",
       "cards": [
         {
-          "id": "card-eng-b2",
-          "title": "US-03: Certificación B2 First Certificate",
-          "subtitle": "Competencia Profesional de Inglés",
-          "roleTag": "PM",
-          "tags": ["Inglés B2", "Certificación", "En Curso"],
-          "metrics": "Nivel B2 en preparación para proyectos internacionales",
-          "description": "Como profesional de TI, quiero consolidar mi nivel de inglés B2 First para coordinar requerimientos y comunicarme efectivamente con equipos globales.",
-          "acceptanceCriteria": [
-            "Comprensión y redacción de especificaciones técnicas en inglés.",
-            "Participación fluida en ceremonias ágiles e interacciones con stakeholders."
-          ]
-        },
-        {
-          "id": "card-pm-cert",
-          "title": "US-04: Transición & Certificación en Project Management",
-          "subtitle": "Gestión de Proyectos de Software",
-          "roleTag": "PM",
-          "tags": ["Project Management", "Agile Leadership", "Roadmaps"],
-          "description": "Como líder de proyecto, quiero estructurar planes de trabajo y roadmaps claros para garantizar la alineación de objetivos de negocio con las entregas del equipo.",
-          "acceptanceCriteria": [
-            "Definición de alcance, cronogramas y gestión de riesgos en proyectos TI.",
-            "Alineación entre equipos de negocio y desarrollo."
-          ]
-        }
-      ]
-    },
-    {
-      "id": "inprogress",
-      "title": "⚙️ In Progress / Proyectos Activos",
-      "cards": [
-        {
-          "id": "card-active-qa",
-          "title": "US-05: Estrategias de Testing & QA Manual",
-          "subtitle": "Garantía de Calidad de Software",
+          "key": "QA-202",
+          "type": "Task",
           "roleTag": "QA",
-          "tags": ["QA", "Manual Testing", "Test Cases", "Bug Tracking"],
-          "metrics": "Diseño exhaustivo de planes de prueba y casos de prueba",
-          "description": "Como QA Specialist, quiero diseñar ejecuciones de prueba estructuradas para detectar desviaciones antes del despliegue en producción.",
+          "summary": "Diseño de Matriz de Cobertura y Testing Manual",
+          "description": "Como QA Specialist, quiero diseñar la matriz de cobertura de pruebas y ejecutar casos de prueba manuales para validar los flujos críticos del sistema.",
           "acceptanceCriteria": [
-            "Elaboración de matrices de prueba y reporte de bugs con trazabilidad.",
-            "Validación de criterios de aceptación de Historias de Usuario."
-          ]
+            "100% de casos de prueba críticos documentados en TestRail/Xray.",
+            "Reporte de ejecución con evidencias de pasados/fallados.",
+            "Bugs críticos reportados con pasos de reproducción claros."
+          ],
+          "storyPoints": 3,
+          "priority": "Medium",
+          "tags": ["Manual Testing", "Test Cases", "QA"]
+        }
+      ]
+    },
+    {
+      "id": "in_review",
+      "title": "IN REVIEW / QA",
+      "cards": [
+        {
+          "key": "PM-301",
+          "type": "Story",
+          "roleTag": "PM",
+          "summary": "Implementación de Marcos Ágiles & Kaizen",
+          "description": "Como Project Manager, quiero establecer metodologías Scrum/Kanban e integrar dinámicas Kaizen para optimizar el throughput del equipo.",
+          "acceptanceCriteria": [
+            "Definición de DoR (Definition of Ready) y DoD (Definition of Done).",
+            "Métricas de Velocity y Cumulative Flow Diagram configuradas.",
+            "Retrospectivas orientadas a la mejora continua ejecutadas."
+          ],
+          "storyPoints": 8,
+          "priority": "High",
+          "tags": ["Scrum", "Kanban", "Kaizen"]
         }
       ]
     },
     {
       "id": "done",
-      "title": "🚀 Done / Experiencia & Logros Destacados",
+      "title": "DONE",
       "cards": [
         {
-          "id": "card-fa-migration",
-          "title": "US-06: Levantamiento de Requerimientos y Migración de Sistemas",
-          "subtitle": "Análisis Funcional & Casos de Uso",
-          "roleTag": "Functional Analyst",
-          "tags": ["Análisis Funcional", "Casos de Uso", "Migración de Sistemas", "SQL"],
-          "metrics": "Modelado preciso de procesos para minimizar inconsistencias en la migración",
-          "description": "Como Analista Funcional, requerí documentar los procesos 'As-Is' y 'To-Be' para asegurar una transición sin interrupciones en la migración del sistema core.",
+          "key": "DEV-404",
+          "type": "Task",
+          "roleTag": "Dev",
+          "summary": "Arquitectura Base & API Endpoints",
+          "description": "Como Fullstack Developer, quiero implementar la arquitectura base con SQL y Node.js para servir datos estructurados a las interfaces del cliente.",
           "acceptanceCriteria": [
-            "Redacción de Casos de Uso detallados y Reglas de Negocio.",
-            "Validación de datos mediante consultas SQL.",
-            "Coordinación entre usuarios clave y el equipo de desarrollo."
-          ]
-        },
-        {
-          "id": "card-henry-bootcamp",
-          "title": "US-07: Bootcamp Fullstack Development - SoyHenry",
-          "subtitle": "Formación Intensiva en Desarrollo Web",
-          "roleTag": "Developer",
-          "tags": ["Fullstack", "React", "Node.js", "Express", "PostgreSQL"],
-          "metrics": "+800 horas de programación e integración de proyectos end-to-end",
-          "description": "Como desarrolladora fullstack, completé una formación intensiva creando aplicaciones web completas utilizando el stack PERN/MERN.",
-          "acceptanceCriteria": [
-            "Desarrollo de proyecto integrador aplicando arquitectura en capas.",
-            "Graduación completada exitosamente el 17 de noviembre de 2023."
-          ]
+            "Endpoints RESTful probados con Postman.",
+            "Modelo de datos relacional normalizado en SQL.",
+            "Repositorio de código estructurado en GitHub."
+          ],
+          "storyPoints": 5,
+          "priority": "Medium",
+          "tags": ["SQL", "Node.js", "React"]
         }
       ]
     }

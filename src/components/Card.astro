@@ -1,0 +1,65 @@
+---
+interface Props {
+  key: string;
+  type: string;
+  roleTag: string;
+  summary: string;
+  description: string;
+  acceptanceCriteria: string[];
+  storyPoints: number;
+  priority: string;
+  tags: string[];
+}
+
+const { key, type, roleTag, summary, description, acceptanceCriteria, storyPoints, priority, tags } = Astro.props;
+
+// Íconos al estilo Jira por tipo de issue
+const getTypeIcon = (issueType: string) => {
+  switch (issueType) {
+    case 'Story': return '📗';
+    case 'Task': return '🔹';
+    case 'Bug': return '🔴';
+    default: return '📄';
+  }
+};
+---
+
+<article 
+  class="card-item bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-md p-3 hover:border-blue-500 dark:hover:border-blue-500 transition-all cursor-pointer shadow-sm group"
+  data-key={key}
+  data-type={type}
+  data-role={roleTag}
+  data-summary={summary}
+  data-description={description}
+  data-criteria={JSON.stringify(acceptanceCriteria)}
+  data-points={storyPoints}
+  data-priority={priority}
+>
+  <p class="text-xs font-medium text-slate-800 dark:text-slate-200 group-hover:text-blue-600 dark:group-hover:text-blue-400 mb-3">
+    {summary}
+  </p>
+
+  <div class="flex flex-wrap gap-1 mb-3">
+    {tags.map((tag) => (
+      <span class="text-[10px] bg-slate-100 dark:bg-slate-900 text-slate-500 dark:text-slate-400 px-1.5 py-0.5 rounded border border-slate-200 dark:border-slate-800">
+        {tag}
+      </span>
+    ))}
+  </div>
+
+  <div class="flex items-center justify-between pt-2 border-t border-slate-100 dark:border-slate-900 text-xs">
+    <div class="flex items-center gap-1.5">
+      <span>{getTypeIcon(type)}</span>
+      <span class="font-mono font-semibold text-slate-500 dark:text-slate-400 text-[11px]">{key}</span>
+    </div>
+
+    <div class="flex items-center gap-2">
+      <span class="text-[10px] bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-mono px-1.5 py-0.5 rounded-full font-bold" title="Story Points">
+        {storyPoints}
+      </span>
+      <div class="w-5 h-5 rounded-full bg-emerald-600 text-white flex items-center justify-center text-[10px] font-bold" title="Asignado: Magalí Godoy">
+        MG
+      </div>
+    </div>
+  </div>
+</article>

@@ -1,75 +1,221 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import Column from '../components/Column.astro';
 import boardData from '../data/boardData.json';
 
-const { profile, columns } = boardData;
+const profile = boardData.profile;
+const columns = boardData.columns;
 ---
 
-<Layout title={`${profile.name} | Porfolio Kanban`}>
+<Layout title={`${profile.name} | Portfolio`}>
   <main class="max-w-7xl mx-auto px-4 py-8">
     
-    <!-- Header del Perfil -->
-    <header class="mb-10 border-b border-slate-800 pb-6">
+    <!-- Header del Perfil / Proyecto -->
+    <header class="mb-8 border-b border-slate-200 dark:border-slate-800 pb-6 transition-colors">
       <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
         <div>
-          <h1 class="text-3xl font-bold tracking-tight text-white">{profile.name}</h1>
-          <p class="text-indigo-400 font-medium text-lg mt-1">{profile.role}</p>
-          <p class="text-slate-400 text-sm mt-2 max-w-2xl">{profile.bio}</p>
+          <h1 class="text-3xl font-bold tracking-tight text-slate-900 dark:text-white">{profile.name}</h1>
+          <p class="text-emerald-600 dark:text-emerald-400 font-semibold text-lg mt-1">{profile.role}</p>
+          <p class="text-slate-600 dark:text-slate-400 text-sm mt-2 max-w-2xl">{profile.bio}</p>
         </div>
         
         <div class="flex items-center gap-3">
-          <a href={profile.links.linkedin} target="_blank" rel="noopener noreferrer" class="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-slate-200 rounded-lg text-sm font-medium transition-colors border border-slate-700">
+          <button
+            id="theme-toggle"
+            type="button"
+            class="p-2.5 rounded-lg bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-200 hover:bg-slate-300 dark:hover:bg-slate-700 transition-colors border border-slate-300 dark:border-slate-700"
+            aria-label="Cambiar tema"
+          >
+            <svg id="theme-toggle-light-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+              <path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 100 2h1z"></path>
+            </svg>
+            <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+              <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
+            </svg>
+          </button>
+
+          <a href={profile.links.linkedin} target="_blank" rel="noopener noreferrer" class="px-4 py-2 bg-slate-200 dark:bg-slate-800 hover:bg-slate-300 dark:hover:bg-slate-700 text-slate-800 dark:text-slate-200 rounded-lg text-sm font-medium transition-colors border border-slate-300 dark:border-slate-700">
             LinkedIn
           </a>
-          <a href={profile.links.github} target="_blank" rel="noopener noreferrer" class="px-4 py-2 bg-indigo-600 hover:bg-indigo-500 text-white rounded-lg text-sm font-medium transition-colors shadow-lg shadow-indigo-500/20">
+          <a href={profile.links.github} target="_blank" rel="noopener noreferrer" class="px-4 py-2 bg-emerald-600 hover:bg-emerald-500 text-white rounded-lg text-sm font-medium transition-colors shadow-lg shadow-emerald-600/20">
             GitHub
           </a>
         </div>
       </div>
     </header>
 
-    <!-- Tablero Scrum/Kanban -->
+    <!-- Filtros por Rol -->
+    <div class="flex items-center gap-2 mb-8 overflow-x-auto pb-2">
+      <span class="text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mr-2">Filtrar:</span>
+      <button class="filter-btn active px-3 py-1.5 text-xs font-medium rounded-md bg-emerald-600 text-white transition-colors" data-role="All">Todos</button>
+      <button class="filter-btn px-3 py-1.5 text-xs font-medium rounded-md bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-300 dark:hover:bg-slate-700 transition-colors" data-role="FA">Functional Analyst</button>
+      <button class="filter-btn px-3 py-1.5 text-xs font-medium rounded-md bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-300 dark:hover:bg-slate-700 transition-colors" data-role="QA">QA Specialist</button>
+      <button class="filter-btn px-3 py-1.5 text-xs font-medium rounded-md bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-300 dark:hover:bg-slate-700 transition-colors" data-role="PM">Project Manager</button>
+      <button class="filter-btn px-3 py-1.5 text-xs font-medium rounded-md bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-300 dark:hover:bg-slate-700 transition-colors" data-role="Dev">Fullstack Dev</button>
+    </div>
+
+    <!-- Tablero de Columnas -->
     <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 items-start">
       {columns.map((column) => (
-        <div class="bg-slate-900/80 border border-slate-800 rounded-xl p-4 flex flex-col gap-4 shadow-sm">
-          <div class="flex items-center justify-between pb-2 border-b border-slate-800">
-            <h2 class="font-semibold text-slate-200 text-sm">{column.title}</h2>
-            <span class="bg-slate-800 text-slate-400 text-xs px-2 py-0.5 rounded-full border border-slate-700">
-              {column.cards.length}
-            </span>
-          </div>
-
-          <div class="flex flex-col gap-3">
-            {column.cards.map((card) => (
-              <article class="bg-slate-950 border border-slate-800/80 rounded-lg p-4 hover:border-slate-700 transition-all cursor-pointer group shadow-sm hover:shadow-indigo-500/5">
-                <div class="flex items-center justify-between gap-2 mb-2">
-                  <span class="text-xs font-mono text-indigo-400 font-semibold">{card.roleTag}</span>
-                  {card.metrics && (
-                    <span class="text-[10px] bg-emerald-950 text-emerald-400 border border-emerald-800/50 px-2 py-0.5 rounded">
-                      Métrica
-                    </span>
-                  )}
-                </div>
-
-                <h3 class="font-semibold text-slate-100 text-sm group-hover:text-indigo-300 transition-colors">
-                  {card.title}
-                </h3>
-                <p class="text-slate-400 text-xs mt-1">{card.subtitle}</p>
-
-                <!-- Tags -->
-                <div class="flex flex-wrap gap-1.5 mt-3">
-                  {card.tags.map((tag) => (
-                    <span class="text-[10px] bg-slate-900 text-slate-400 border border-slate-800 px-2 py-0.5 rounded-md">
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-              </article>
-            ))}
-          </div>
-        </div>
+        <Column title={column.title} cards={column.cards} />
       ))}
     </section>
 
+    <!-- Modal con Detalle de Ticket -->
+    <div id="modal-overlay" class="fixed inset-0 bg-slate-950/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+      <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-lg max-w-3xl w-full p-6 shadow-2xl relative max-h-[90vh] overflow-y-auto">
+        
+        <div class="flex items-center justify-between pb-3 border-b border-slate-200 dark:border-slate-800 mb-4">
+          <div class="flex items-center gap-2">
+            <span id="modal-type-icon" class="text-base"></span>
+            <span id="modal-key" class="font-mono text-sm font-bold text-slate-500 dark:text-slate-400"></span>
+          </div>
+          <button id="modal-close" class="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 text-xl font-bold">✕</button>
+        </div>
+
+        <h2 id="modal-summary" class="text-xl font-bold text-slate-900 dark:text-white mb-6"></h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          
+          <!-- Columna Principal: Descripción y Criterios -->
+          <div class="md:col-span-2 space-y-6">
+            <div>
+              <h3 class="text-xs font-bold uppercase text-slate-400 mb-2">Descripción</h3>
+              <p id="modal-description" class="text-sm text-slate-700 dark:text-slate-300 leading-relaxed bg-slate-50 dark:bg-slate-950 p-3 rounded border border-slate-200 dark:border-slate-800/60"></p>
+            </div>
+
+            <div>
+              <h3 class="text-xs font-bold uppercase text-slate-400 mb-2">Criterios de Aceptación</h3>
+              <ul id="modal-criteria" class="space-y-2 text-sm text-slate-700 dark:text-slate-300"></ul>
+            </div>
+          </div>
+
+          <!-- Columna Lateral: Atributos -->
+          <div class="bg-slate-50 dark:bg-slate-950 p-4 rounded-lg border border-slate-200 dark:border-slate-800/80 space-y-4 text-xs">
+            <div>
+              <span class="text-slate-400 block font-medium">Asignado</span>
+              <span class="font-semibold text-slate-700 dark:text-slate-200 flex items-center gap-1.5 mt-1">
+                <span class="w-4 h-4 rounded-full bg-emerald-600 text-white flex items-center justify-center text-[9px]">MG</span>
+                Magalí Godoy
+              </span>
+            </div>
+
+            <div>
+              <span class="text-slate-400 block font-medium">Rol Principal</span>
+              <span id="modal-role" class="inline-block mt-1 font-mono font-bold text-emerald-600 dark:text-emerald-400"></span>
+            </div>
+
+            <div>
+              <span class="text-slate-400 block font-medium">Prioridad</span>
+              <span id="modal-priority" class="inline-block mt-1 font-semibold text-slate-700 dark:text-slate-200"></span>
+            </div>
+
+            <div>
+              <span class="text-slate-400 block font-medium">Story Points</span>
+              <span id="modal-points" class="inline-block mt-1 bg-slate-200 dark:bg-slate-800 text-slate-800 dark:text-slate-200 font-bold font-mono px-2 py-0.5 rounded"></span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
   </main>
 </Layout>
+
+<script>
+  // Modo Claro / Oscuro
+  const themeToggleBtn = document.getElementById('theme-toggle');
+  const darkIcon = document.getElementById('theme-toggle-dark-icon');
+  const lightIcon = document.getElementById('theme-toggle-light-icon');
+
+  function updateIcons() {
+    if (document.documentElement.classList.contains('dark')) {
+      lightIcon?.classList.remove('hidden');
+      darkIcon?.classList.add('hidden');
+    } else {
+      lightIcon?.classList.add('hidden');
+      darkIcon?.classList.remove('hidden');
+    }
+  }
+
+  updateIcons();
+
+  themeToggleBtn?.addEventListener('click', () => {
+    document.documentElement.classList.toggle('dark');
+    const isDark = document.documentElement.classList.contains('dark');
+    localStorage.setItem('theme', isDark ? 'dark' : 'light');
+    updateIcons();
+  });
+
+  // Filtrado de Tarjetas por Data Attribute
+  const filterBtns = document.querySelectorAll('.filter-btn');
+  const cards = document.querySelectorAll('.card-item');
+
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const selectedRole = btn.getAttribute('data-role');
+
+      filterBtns.forEach(b => {
+        b.classList.remove('bg-emerald-600', 'text-white');
+        b.classList.add('bg-slate-200', 'dark:bg-slate-800', 'text-slate-700', 'dark:text-slate-300');
+      });
+      btn.classList.remove('bg-slate-200', 'dark:bg-slate-800', 'text-slate-700', 'dark:text-slate-300');
+      btn.classList.add('bg-emerald-600', 'text-white');
+
+      cards.forEach(card => {
+        const cardRole = card.getAttribute('data-role');
+        if (selectedRole === 'All' || cardRole === selectedRole) {
+          (card as HTMLElement).style.display = 'block';
+        } else {
+          (card as HTMLElement).style.display = 'none';
+        }
+      });
+    });
+  });
+
+  // Apertura y Cierre del Modal
+  const modalOverlay = document.getElementById('modal-overlay');
+  const modalClose = document.getElementById('modal-close');
+
+  cards.forEach(card => {
+    card.addEventListener('click', () => {
+      const key = card.getAttribute('data-key') || '';
+      const type = card.getAttribute('data-type') || '';
+      const role = card.getAttribute('data-role') || '';
+      const summary = card.getAttribute('data-summary') || '';
+      const description = card.getAttribute('data-description') || '';
+      const criteria = JSON.parse(card.getAttribute('data-criteria') || '[]');
+      const points = card.getAttribute('data-points') || '';
+      const priority = card.getAttribute('data-priority') || '';
+
+      document.getElementById('modal-key')!.textContent = key;
+      document.getElementById('modal-type-icon')!.textContent = type === 'Story' ? '📗' : '🔹';
+      document.getElementById('modal-summary')!.textContent = summary;
+      document.getElementById('modal-description')!.textContent = description;
+      document.getElementById('modal-role')!.textContent = role;
+      document.getElementById('modal-priority')!.textContent = priority;
+      document.getElementById('modal-points')!.textContent = points;
+
+      const criteriaList = document.getElementById('modal-criteria')!;
+      criteriaList.innerHTML = criteria.map((c: string) => `
+        <li class="flex items-start gap-2 bg-slate-50 dark:bg-slate-950 p-2 rounded border border-slate-200 dark:border-slate-800/40">
+          <input type="checkbox" checked disabled class="mt-1 accent-emerald-600">
+          <span>${c}</span>
+        </li>
+      `).join('');
+
+      modalOverlay?.classList.remove('hidden');
+    });
+  });
+
+  modalClose?.addEventListener('click', () => {
+    modalOverlay?.classList.add('hidden');
+  });
+
+  modalOverlay?.addEventListener('click', (e) => {
+    if (e.target === modalOverlay) {
+      modalOverlay.classList.add('hidden');
+    }
+  });
+</script>

@@ -1,12 +1,11 @@
-
 {
   "profile": {
-    "name": "Magalí Daniela Godoy",
-    "role": "Functional Analyst | Quality Assurance | Project Management",
-    "bio": "Especialista en la construcción de casos de uso para migraciones de sistemas, optimización de procesos de negocio y aseguramiento de calidad con metodologías ágiles.",
+    "name": "Magalí Godoy",
+    "role": "Functional Analyst | QA Specialist | Project Management",
+    "bio": "Analista Funcional y QA con enfoque en Project Management. Experiencia en el relevamiento de requerimientos, especificación de casos de uso para sistemas y aseguramiento de calidad con metodologías ágiles.",
     "links": {
-      "linkedin": "https://linkedin.com",
-      "github": "https://github.com"
+      "linkedin": "https://www.linkedin.com/in/magali-d-godoy/",
+      "github": "https://github.com/Maggodoy"
     }
   },
   "columns": [
@@ -15,61 +14,80 @@
       "title": "TO DO / BACKLOG",
       "cards": [
         {
+          "id": "FA-101",
           "key": "FA-101",
           "type": "Story",
-          "roleTag": "FA",
-          "summary": "Casos de Uso para Migración de Sistemas",
-          "description": "Como Functional Analyst, quiero documentar los casos de uso para la migración de sistemas legados hacia microservicios, para garantizar la continuidad del negocio sin pérdida de datos.",
-          "acceptanceCriteria": [
-            "Matriz de trazabilidad de requisitos completada.",
-            "Diagramas de flujo de datos (DFD) actualizados.",
-            "Validación previa con los stakeholders aprobada."
+          "role": "FA",
+          "title": "Migración de Core System: Relevamiento y Casos de Uso",
+          "summary": "Diseño de documentación técnica y funcional para la migración de datos e interfaces de un sistema heredado a arquitectura moderna.",
+          "description": "Elaboración de la matriz de trazabilidad de requisitos, diagramas de secuencia UML y especificación de casos de uso para el módulo de usuarios y procesos de negocio críticos.",
+          "criteria": [
+            "Dado un proceso de negocio heredado, cuando se mapean los endpoints de destino, entonces se debe documentar el mapping de datos campo a campo.",
+            "Dado un caso de uso de migración, cuando se identifica una regla de negocio compleja, se debe adjuntar el diagrama de flujo BPMN correspondiente."
           ],
-          "storyPoints": 5,
           "priority": "High",
+          "points": 8,
           "tags": ["Use Cases", "Migration", "UML"]
+        },
+        {
+          "id": "PM-201",
+          "key": "PM-201",
+          "type": "Task",
+          "role": "PM",
+          "title": "Definición de OKRs y Planificación de Sprints",
+          "summary": "Establecimiento de métricas de rendimiento (Velocidad de Sprint) y refinamiento de Backlog con el equipo de desarrollo.",
+          "description": "Facilitación de ceremonias Scrum (Daily, Planning, Retrospective), gestión de bloqueos en Jira/Confluence y priorización de entregables según el valor de negocio acordado con los stakeholders.",
+          "criteria": [
+            "Dado el inicio de un Sprint, cuando se realiza la Planning, el 100% de los tickets priorizados debe contar con Story Points asignados.",
+            "Dado un riesgo identificado en el tablero, se debe crear un plan de mitigación en Confluence antes del cierre del Sprint."
+          ],
+          "priority": "Medium",
+          "points": 5,
+          "tags": ["Scrum", "OKRs", "Agile"]
         }
       ]
     },
     {
-      "id": "in_progress",
+      "id": "in-progress",
       "title": "IN PROGRESS",
       "cards": [
         {
-          "key": "QA-202",
-          "type": "Task",
-          "roleTag": "QA",
-          "summary": "Diseño de Matriz de Cobertura y Testing Manual",
-          "description": "Como QA Specialist, quiero diseñar la matriz de cobertura de pruebas y ejecutar casos de prueba manuales para validar los flujos críticos del sistema.",
-          "acceptanceCriteria": [
-            "100% de casos de prueba críticos documentados en TestRail/Xray.",
-            "Reporte de ejecución con evidencias de pasados/fallados.",
-            "Bugs críticos reportados con pasos de reproducción claros."
+          "id": "QA-301",
+          "key": "QA-301",
+          "type": "Story",
+          "role": "QA",
+          "title": "Estrategia de Testing Manual y Matriz de Casos de Prueba",
+          "summary": "Diseño y ejecución de planes de prueba integrales para la validación de módulos funcionales y regresión.",
+          "description": "Creación de matrices de prueba de cobertura completa, reporte y seguimiento de bugs en Jira, y validación de criterios de aceptación bajo metodología BDD (Given-When-Then).",
+          "criteria": [
+            "Dado un conjunto de casos de prueba ejecutados, cuando se detecta una desviación, se debe reportar el bug con logs, captura y pasos de reproducción.",
+            "Dado un pase a ambiente de staging, la suite de pruebas críticas debe alcanzar un 100% de ejecución."
           ],
-          "storyPoints": 3,
-          "priority": "Medium",
-          "tags": ["Manual Testing", "Test Cases", "QA"]
+          "priority": "High",
+          "points": 5,
+          "tags": ["Testing", "BDD", "Jira Bug Tracking"]
         }
       ]
     },
     {
-      "id": "in_review",
-      "title": "IN REVIEW / QA",
+      "id": "in-review",
+      "title": "IN REVIEW",
       "cards": [
         {
-          "key": "PM-301",
-          "type": "Story",
-          "roleTag": "PM",
-          "summary": "Implementación de Marcos Ágiles & Kaizen",
-          "description": "Como Project Manager, quiero establecer metodologías Scrum/Kanban e integrar dinámicas Kaizen para optimizar el throughput del equipo.",
-          "acceptanceCriteria": [
-            "Definición de DoR (Definition of Ready) y DoD (Definition of Done).",
-            "Métricas de Velocity y Cumulative Flow Diagram configuradas.",
-            "Retrospectivas orientadas a la mejora continua ejecutadas."
+          "id": "DEV-401",
+          "key": "DEV-401",
+          "type": "Task",
+          "role": "Dev",
+          "title": "Desarrollo Frontend del Tablero Jira en Astro & Tailwind",
+          "summary": "Construcción de interfaz interactiva e intuitiva con filtrado dinámico por rol y soporte para Light/Dark Mode.",
+          "description": "Implementación de arquitectura basada en componentes reutilizables (Layout, Column, Card), manejo de datos estructurados vía JSON y optimización de rendimiento en compilación.",
+          "criteria": [
+            "Dado un usuario visitando el portfolio, cuando selecciona un filtro por rol (FA, QA, PM, Dev), el tablero debe mostrar únicamente las tarjetas asociadas.",
+            "Dado el cambio de preferencia de tema, el estado debe persistir en el localStorage del navegador."
           ],
-          "storyPoints": 8,
-          "priority": "High",
-          "tags": ["Scrum", "Kanban", "Kaizen"]
+          "priority": "Medium",
+          "points": 3,
+          "tags": ["Astro", "Tailwind CSS", "TypeScript"]
         }
       ]
     },
@@ -78,19 +96,20 @@
       "title": "DONE",
       "cards": [
         {
-          "key": "DEV-404",
-          "type": "Task",
-          "roleTag": "Dev",
-          "summary": "Arquitectura Base & API Endpoints",
-          "description": "Como Fullstack Developer, quiero implementar la arquitectura base con SQL y Node.js para servir datos estructurados a las interfaces del cliente.",
-          "acceptanceCriteria": [
-            "Endpoints RESTful probados con Postman.",
-            "Modelo de datos relacional normalizado en SQL.",
-            "Repositorio de código estructurado en GitHub."
+          "id": "FA-102",
+          "key": "FA-102",
+          "type": "Story",
+          "role": "FA",
+          "title": "Optimización y Reingeniería de Procesos de Negocio",
+          "summary": "Levantamiento de requerimientos y rediseño de flujos operativos para aumentar la eficiencia del equipo.",
+          "description": "Entrevistas con usuarios clave, identificación de cuellos de botella en los flujos actuales y propuesta de mejoras en diagramas AS-IS y TO-BE.",
+          "criteria": [
+            "Dado el diagrama AS-IS, cuando se aprueba la propuesta de mejora, se debe publicar el diagrama TO-BE en el repositorio de procesos.",
+            "Dado el nuevo flujo de trabajo, se debe validar su factibilidad técnica con el equipo de desarrollo."
           ],
-          "storyPoints": 5,
-          "priority": "Medium",
-          "tags": ["SQL", "Node.js", "React"]
+          "priority": "Low",
+          "points": 5,
+          "tags": ["BPMN", "Requerimientos", "AS-IS / TO-BE"]
         }
       ]
     }

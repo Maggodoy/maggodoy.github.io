@@ -2,18 +2,38 @@
 interface Props {
   key: string;
   type: string;
-  roleTag: string;
+  roleTag?: string;
+  role?: string;
   summary: string;
   description: string;
-  acceptanceCriteria: string[];
-  storyPoints: number;
+  acceptanceCriteria?: string[];
+  criteria?: string[];
+  storyPoints?: number;
+  points?: number;
   priority: string;
   tags: string[];
 }
 
-const { key, type, roleTag, summary, description, acceptanceCriteria, storyPoints, priority, tags } = Astro.props;
+const { 
+  key, 
+  type, 
+  roleTag, 
+  role, 
+  summary, 
+  description, 
+  acceptanceCriteria, 
+  criteria, 
+  storyPoints, 
+  points, 
+  priority, 
+  tags = [] 
+} = Astro.props;
 
-// Íconos al estilo Jira por tipo de issue
+// Normalización de propiedades para asegurar compatibilidad
+const finalRole = roleTag || role || 'FA';
+const finalCriteria = acceptanceCriteria || criteria || [];
+const finalPoints = storyPoints ?? points ?? 0;
+
 const getTypeIcon = (issueType: string) => {
   switch (issueType) {
     case 'Story': return '📗';
@@ -25,17 +45,17 @@ const getTypeIcon = (issueType: string) => {
 ---
 
 <article 
-  class="card-item bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-md p-3 hover:border-blue-500 dark:hover:border-blue-500 transition-all cursor-pointer shadow-sm group"
+  class="card-item bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-md p-3 hover:border-emerald-500 dark:hover:border-emerald-500 transition-all cursor-pointer shadow-sm group mb-3"
   data-key={key}
   data-type={type}
-  data-role={roleTag}
+  data-role={finalRole}
   data-summary={summary}
   data-description={description}
-  data-criteria={JSON.stringify(acceptanceCriteria)}
-  data-points={storyPoints}
+  data-criteria={JSON.stringify(finalCriteria)}
+  data-points={finalPoints}
   data-priority={priority}
 >
-  <p class="text-xs font-medium text-slate-800 dark:text-slate-200 group-hover:text-blue-600 dark:group-hover:text-blue-400 mb-3">
+  <p class="text-xs font-medium text-slate-800 dark:text-slate-200 group-hover:text-emerald-600 dark:group-hover:text-emerald-400 mb-3">
     {summary}
   </p>
 
@@ -55,7 +75,7 @@ const getTypeIcon = (issueType: string) => {
 
     <div class="flex items-center gap-2">
       <span class="text-[10px] bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-mono px-1.5 py-0.5 rounded-full font-bold" title="Story Points">
-        {storyPoints}
+        {finalPoints}
       </span>
       <div class="w-5 h-5 rounded-full bg-emerald-600 text-white flex items-center justify-center text-[10px] font-bold" title="Asignado: Magalí Godoy">
         MG

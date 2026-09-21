@@ -1,0 +1,17 @@
+---
+import Column from './Column.astro';
+
+interface Props {
+  columns: any[];
+}
+
+const { columns } = Astro.props;
+---
+
+<section class="overflow-x-auto pb-4">
+  <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4 items-start min-w-[750px] xl:min-w-0">
+    {columns.map((column) => (
+      <Column title={column.title} cards={column.cards} />
+    ))}
+  </div>
+</section>

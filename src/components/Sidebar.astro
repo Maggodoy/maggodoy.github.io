@@ -13,10 +13,8 @@ interface Props {
 
 const { profile } = Astro.props;
 
-// Valores por defecto seguros para evitar cierres inesperados si profile viene undefined
 const name = profile?.name || "Magalí Godoy";
 const role = profile?.role || "Functional Analyst | QA Specialist | Project Management";
-const bio = profile?.bio || "";
 const linkedin = profile?.links?.linkedin || "https://linkedin.com/in/magali-d-godoy";
 const github = profile?.links?.github || "https://github.com";
 
@@ -31,7 +29,7 @@ const skills = [
 
 const education = [
   { title: "Fullstack Developer", entity: "SoyHenry", year: "2023" },
-  { title: "Oratoria y comunicación acertiva", entity: "OPI Franco Pisso", year: "2025" },
+  { title: "Oratoria y comunicación asertiva", entity: "OPI Franco Pisso", year: "2025" },
   { title: "Project Manager | Scrum Master (PSM I)", entity: "Scrum.org", year: "2026" },
   { title: "Diseño UX/UI (Especialización Autodidacta)", entity: "Cursos & Práctica", year: "2024 - Presente" },
   { title: "Certificación en Calidad del Software(QA)", entity: "ISTQB CTFL", year: "2026" },
@@ -39,12 +37,37 @@ const education = [
 ];
 ---
 
-<aside id="sidebar" class="w-full lg:w-64 shrink-0 bg-white dark:bg-slate-900 border-r border-slate-200 dark:border-slate-800 p-3 flex flex-col justify-between h-screen sticky top-0 transition-all duration-300">
-  
+<!-- 📱 BOTÓN HAMBURGUESA MÓVIL -->
+<div class="lg:hidden p-4 bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between sticky top-0 z-30">
+  <div class="flex items-center gap-2">
+    <div class="w-7 h-7 rounded-lg bg-emerald-600 text-white flex items-center justify-center font-bold text-xs shadow-sm">
+      MG
+    </div>
+    <span class="text-xs font-bold text-slate-900 dark:text-slate-100">{name}</span>
+  </div>
+  <button 
+    id="mobile-menu-button"
+    class="p-2 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200 shadow-xs flex items-center justify-center cursor-pointer"
+    aria-label="Abrir menú"
+  >
+    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+    </svg>
+  </button>
+</div>
+
+<!-- 🌑 CAPA DE FONDO OSCURA (BACKDROP MÓVIL) -->
+<div id="sidebar-backdrop" class="fixed inset-0 bg-slate-950/60 backdrop-blur-xs z-40 hidden lg:hidden transition-opacity"></div>
+
+<!-- SIDEBAR PRINCIPAL -->
+<aside 
+  id="sidebar" 
+  class="fixed lg:sticky top-0 inset-y-0 left-0 z-50 w-64 bg-white dark:bg-slate-900 border-r border-slate-200 dark:border-slate-800 p-3 flex flex-col justify-between h-screen -translate-x-full lg:translate-x-0 transition-transform duration-300 ease-in-out shadow-2xl lg:shadow-none shrink-0"
+>
   <div class="space-y-4">
-    <!-- Header Sidebar con Botón Colapsable Estilo Jira -->
-    <div class="flex items-center justify-between pb-3 border-b border-slate-100 dark:border-slate-800">
-      <div id="sidebar-header-info" class="flex items-center gap-2.5 overflow-hidden transition-all">
+    <!-- Header Sidebar -->
+    <div class="flex items-center justify-between pb-3 border-b border-slate-100 dark:border-slate-800 pt-2 lg:pt-0">
+      <div id="sidebar-header-info" class="flex items-center gap-2.5 overflow-hidden">
         <div class="w-8 h-8 rounded-lg bg-emerald-600 text-white flex items-center justify-center font-bold text-xs shrink-0 shadow-sm">
           MG
         </div>
@@ -54,10 +77,10 @@ const education = [
         </div>
       </div>
 
-      <!-- Botón para Colapsar / Expandir Barra -->
+      <!-- Botón Colapsar Desktop -->
       <button 
         id="sidebar-toggle" 
-        class="p-1.5 rounded-md text-slate-500 hover:bg-slate-100 dark:hover:bg-slate-800 dark:text-slate-400 transition-colors cursor-pointer shrink-0"
+        class="hidden lg:flex p-1.5 rounded-md text-slate-500 hover:bg-slate-100 dark:hover:bg-slate-800 dark:text-slate-400 transition-colors cursor-pointer shrink-0"
         title="Ocultar/Mostrar barra lateral"
       >
         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -66,7 +89,7 @@ const education = [
       </button>
     </div>
 
-    <!-- Menú de Títulos Interactivos -->
+    <!-- Menú -->
     <nav class="space-y-1.5">
       <p class="sidebar-text text-[10px] font-semibold uppercase tracking-wider text-slate-400 dark:text-slate-500 px-2 mb-1">
         Información General
@@ -75,7 +98,6 @@ const education = [
       <button 
         id="btn-open-about"
         class="w-full flex items-center justify-between px-2.5 py-2 rounded-lg text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-emerald-600 dark:hover:text-emerald-400 transition-all text-xs font-semibold cursor-pointer group border border-transparent hover:border-slate-200 dark:hover:border-slate-700"
-        title="Sobre Mí"
       >
         <div class="flex items-center gap-2.5 overflow-hidden">
           <span class="text-base group-hover:scale-110 transition-transform shrink-0">👤</span>
@@ -87,7 +109,6 @@ const education = [
       <button 
         id="btn-open-skills"
         class="w-full flex items-center justify-between px-2.5 py-2 rounded-lg text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-emerald-600 dark:hover:text-emerald-400 transition-all text-xs font-semibold cursor-pointer group border border-transparent hover:border-slate-200 dark:hover:border-slate-700"
-        title="Core Skills"
       >
         <div class="flex items-center gap-2.5 overflow-hidden">
           <span class="text-base group-hover:scale-110 transition-transform shrink-0">⚡</span>
@@ -99,7 +120,6 @@ const education = [
       <button 
         id="btn-open-edu"
         class="w-full flex items-center justify-between px-2.5 py-2 rounded-lg text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-emerald-600 dark:hover:text-emerald-400 transition-all text-xs font-semibold cursor-pointer group border border-transparent hover:border-slate-200 dark:hover:border-slate-700"
-        title="Educación & Cursos"
       >
         <div class="flex items-center gap-2.5 overflow-hidden">
           <span class="text-base group-hover:scale-110 transition-transform shrink-0">🎓</span>
@@ -110,14 +130,13 @@ const education = [
     </nav>
   </div>
 
-  <!-- Links Sociales Inferiores -->
+  <!-- Links Inferiores -->
   <div class="pt-3 border-t border-slate-100 dark:border-slate-800 space-y-1">
     <a 
       href={linkedin} 
       target="_blank" 
       rel="noopener noreferrer"
       class="flex items-center justify-between px-2.5 py-2 rounded-lg text-slate-600 dark:text-slate-400 hover:text-emerald-600 dark:hover:text-emerald-400 hover:bg-slate-100 dark:hover:bg-slate-800 text-xs font-medium transition-colors"
-      title="LinkedIn"
     >
       <span class="flex items-center gap-2 overflow-hidden truncate">
         <span class="shrink-0">💼</span> 
@@ -130,7 +149,6 @@ const education = [
       target="_blank" 
       rel="noopener noreferrer"
       class="flex items-center justify-between px-2.5 py-2 rounded-lg text-slate-600 dark:text-slate-400 hover:text-emerald-600 dark:hover:text-emerald-400 hover:bg-slate-100 dark:hover:bg-slate-800 text-xs font-medium transition-colors"
-      title="GitHub"
     >
       <span class="flex items-center gap-2 overflow-hidden truncate">
         <span class="shrink-0">🐙</span> 
@@ -141,10 +159,9 @@ const education = [
   </div>
 </aside>
 
-<!-- POP-UP / MODAL 1: Sobre Mí -->
-<div id="modal-about" class="fixed inset-0 bg-slate-950/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
-  <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl max-w-xl w-full p-6 shadow-2xl relative">
-    
+<!-- MODAL SOBRE MÍ -->
+<div id="modal-about" class="fixed inset-0 bg-slate-950/60 backdrop-blur-sm z-50 hidden items-center justify-center p-4">
+  <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl max-w-xl w-full p-6 shadow-2xl relative max-h-[90vh] overflow-y-auto">
     <div class="flex items-center justify-between pb-3 border-b border-slate-100 dark:border-slate-800 mb-4">
       <div class="flex items-center gap-2">
         <span class="text-xl">👤</span>
@@ -152,36 +169,39 @@ const education = [
       </div>
       <button class="close-info-modal text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 text-xl font-bold cursor-pointer">✕</button>
     </div>
-
-    <div class="space-y-4 text-xs text-slate-700 dark:text-slate-300 leading-relaxed">
-      
+    
+    <div class="space-y-4 text-xs text-slate-700 dark:text-slate-300">
       <div>
-        <h4 class="font-bold text-slate-900 dark:text-slate-100 text-sm mb-1">De la curiosidad técnica a la gestión de valor</h4>
-        <p class="bg-slate-50 dark:bg-slate-950 p-3 rounded-lg border border-slate-200/60 dark:border-slate-800/60">
+        <h4 class="font-bold text-slate-900 dark:text-slate-100 mb-1.5 text-sm">De la curiosidad técnica a la gestión de valor</h4>
+        <p class="leading-relaxed bg-slate-50 dark:bg-slate-950 p-3 rounded-lg border border-slate-200/60 dark:border-slate-800/60">
           Mi recorrido profesional combina una sólida base en desarrollo fullstack, análisis funcional y calidad de software (QA). Esta visión integral me permite entender el ciclo de vida del producto desde múltiples ángulos: sé lo que implica escribir código, conozco la importancia de especificar requerimientos sin ambigüedades y entiendo el rigor necesario para que una funcionalidad llegue a producción sin fallos.
         </p>
       </div>
 
       <div>
-        <h4 class="font-bold text-slate-900 dark:text-slate-100 text-xs mb-1.5">Mis pilares de trabajo</h4>
-        <ul class="space-y-1.5 list-disc pl-4 text-slate-600 dark:text-slate-400">
-          <li><strong class="text-slate-800 dark:text-slate-200">Claridad sobre suposiciones:</strong> Me enfoco en hacer las preguntas correctas al inicio para evitar reprocesos costosos.</li>
-          <li><strong class="text-slate-800 dark:text-slate-200">Calidad como cultura:</strong> Concibo QA como una mentalidad que acompaña todo el desarrollo, no solo como la etapa final.</li>
-          <li><strong class="text-slate-800 dark:text-slate-200">Agilidad y mejora continua:</strong> Trabajo con marcos ágiles buscando siempre optimizar procesos y flujos de trabajo.</li>
+        <h4 class="font-bold text-slate-900 dark:text-slate-100 mb-2">Mis pilares de trabajo</h4>
+        <ul class="space-y-2 bg-slate-50 dark:bg-slate-950 p-3 rounded-lg border border-slate-200/60 dark:border-slate-800/60">
+          <li>
+            <strong class="text-slate-900 dark:text-slate-100">Claridad sobre suposiciones:</strong> Me enfoco en hacer las preguntas correctas al inicio para evitar reprocesos costosos.
+          </li>
+          <li>
+            <strong class="text-slate-900 dark:text-slate-100">Calidad como cultura:</strong> Concibo QA como una mentalidad que acompaña todo el desarrollo, no solo como la etapa final.
+          </li>
+          <li>
+            <strong class="text-slate-900 dark:text-slate-100">Agilidad y mejora continua:</strong> Trabajo con marcos ágiles buscando siempre optimizar procesos y flujos de trabajo.
+          </li>
         </ul>
       </div>
 
-      <p class="text-[11px] text-emerald-600 dark:text-emerald-400 font-medium pt-1">
-        Actualmente continuo profundizando en Project Management y perfeccionando mi nivel de inglés para liderar iniciativas de alto impacto.
+      <p class="text-emerald-700 dark:text-emerald-400 font-medium pt-1">
+        Actualmente continúo profundizando en Project Management y perfeccionando mi nivel de inglés para liderar iniciativas de alto impacto.
       </p>
-
     </div>
-
   </div>
 </div>
 
-<!-- POP-UP / MODAL 2: Core Skills -->
-<div id="modal-skills" class="fixed inset-0 bg-slate-950/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+<!-- MODAL SKILLS -->
+<div id="modal-skills" class="fixed inset-0 bg-slate-950/60 backdrop-blur-sm z-50 hidden items-center justify-center p-4">
   <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl max-w-lg w-full p-6 shadow-2xl relative max-h-[90vh] overflow-y-auto">
     <div class="flex items-center justify-between pb-3 border-b border-slate-100 dark:border-slate-800 mb-4">
       <div class="flex items-center gap-2">
@@ -196,9 +216,7 @@ const education = [
           <span class="text-xs font-semibold text-slate-500 dark:text-slate-400 block mb-1.5">{category.group}</span>
           <div class="flex flex-wrap gap-1.5">
             {category.items.map((item) => (
-              <span class="text-xs bg-emerald-50 dark:bg-emerald-950/50 text-emerald-800 dark:text-emerald-300 font-medium px-2.5 py-1 rounded-md border border-emerald-200/60 dark:border-emerald-800/60">
-                {item}
-              </span>
+              <span class="text-xs bg-emerald-50 dark:bg-emerald-950/50 text-emerald-800 dark:text-emerald-300 font-medium px-2.5 py-1 rounded-md border border-emerald-200/60 dark:border-emerald-800/60">{item}</span>
             ))}
           </div>
         </div>
@@ -207,8 +225,8 @@ const education = [
   </div>
 </div>
 
-<!-- POP-UP / MODAL 3: Educación -->
-<div id="modal-edu" class="fixed inset-0 bg-slate-950/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+<!-- MODAL EDUCACIÓN -->
+<div id="modal-edu" class="fixed inset-0 bg-slate-950/60 backdrop-blur-sm z-50 hidden items-center justify-center p-4">
   <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl max-w-lg w-full p-6 shadow-2xl relative max-h-[90vh] overflow-y-auto">
     <div class="flex items-center justify-between pb-3 border-b border-slate-100 dark:border-slate-800 mb-4">
       <div class="flex items-center gap-2">
@@ -232,20 +250,74 @@ const education = [
 </div>
 
 <script>
-  // Lógica para colapsar/expandir el Sidebar estilo Jira
   const sidebar = document.getElementById('sidebar');
   const sidebarToggle = document.getElementById('sidebar-toggle');
   const sidebarTexts = document.querySelectorAll('.sidebar-text');
+  const mobileMenuButton = document.getElementById('mobile-menu-button');
+  const sidebarBackdrop = document.getElementById('sidebar-backdrop');
 
+  // Modales
+  const modalAbout = document.getElementById('modal-about');
+  const modalSkills = document.getElementById('modal-skills');
+  const modalEdu = document.getElementById('modal-edu');
+
+  const btnOpenAbout = document.getElementById('btn-open-about');
+  const btnOpenSkills = document.getElementById('btn-open-skills');
+  const btnOpenEdu = document.getElementById('btn-open-edu');
+
+  const closeButtons = document.querySelectorAll('.close-info-modal');
+
+  // Desktop Toggle del Sidebar (Contraer)
   sidebarToggle?.addEventListener('click', () => {
     sidebar?.classList.toggle('lg:w-64');
     sidebar?.classList.toggle('lg:w-16');
-
-    sidebarTexts.forEach(el => {
-      el.classList.toggle('hidden');
-    });
-
-    // Rotar icono de flecha
+    sidebarTexts.forEach(el => el.classList.toggle('hidden'));
     sidebarToggle.classList.toggle('rotate-180');
+  });
+
+  // Mobile Drawer Toggle
+  function toggleMobileMenu() {
+    sidebar?.classList.toggle('-translate-x-full');
+    sidebarBackdrop?.classList.toggle('hidden');
+  }
+
+  mobileMenuButton?.addEventListener('click', toggleMobileMenu);
+  sidebarBackdrop?.addEventListener('click', toggleMobileMenu);
+
+  // Funciones para abrir modales y cerrar menú mobile si está abierto
+  function openModal(modal: HTMLElement | null) {
+    if (!modal) return;
+    modal.classList.remove('hidden');
+    modal.classList.add('flex');
+    if (window.innerWidth < 1024 && !sidebar?.classList.contains('-translate-x-full')) {
+      toggleMobileMenu();
+    }
+  }
+
+  function closeModal(modal: HTMLElement | null) {
+    if (!modal) return;
+    modal.classList.remove('flex');
+    modal.classList.add('hidden');
+  }
+
+  btnOpenAbout?.addEventListener('click', () => openModal(modalAbout));
+  btnOpenSkills?.addEventListener('click', () => openModal(modalSkills));
+  btnOpenEdu?.addEventListener('click', () => openModal(modalEdu));
+
+  closeButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      closeModal(modalAbout);
+      closeModal(modalSkills);
+      closeModal(modalEdu);
+    });
+  });
+
+  // Cerrar al hacer clic fuera del contenido del modal
+  [modalAbout, modalSkills, modalEdu].forEach(modal => {
+    modal?.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        closeModal(modal);
+      }
+    });
   });
 </script>

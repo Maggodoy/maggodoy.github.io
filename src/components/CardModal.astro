@@ -1,58 +1,56 @@
-<script>
-  // Capturamos el modal y el botón de cierre
-  const modal = document.getElementById('cardModal') || document.getElementById('card-modal');
-  const closeBtn = document.getElementById('closeModal') || document.getElementById('close-modal');
+---
+---
+<div id="modal-overlay" class="fixed inset-0 bg-slate-950/60 backdrop-blur-sm z-50 hidden items-center justify-center p-4">
+  <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-lg max-w-3xl w-full p-6 shadow-2xl relative max-h-[90vh] overflow-y-auto">
+    
+    <div class="flex items-center justify-between pb-3 border-b border-slate-200 dark:border-slate-800 mb-4">
+      <div class="flex items-center gap-2">
+        <span id="modal-type-icon" class="text-base"></span>
+        <span id="modal-key" class="font-mono text-sm font-bold text-slate-500 dark:text-slate-400"></span>
+      </div>
+      <button id="modal-close" class="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 text-xl font-bold cursor-pointer">✕</button>
+    </div>
 
-  // Función para cerrar el modal
-  const closeModal = () => {
-    if (modal) {
-      modal.classList.add('hidden');
-      modal.classList.remove('flex');
-    }
-  };
+    <h2 id="modal-summary" class="text-xl font-bold text-slate-900 dark:text-white mb-6"></h2>
 
-  closeBtn?.addEventListener('click', closeModal);
-  modal?.addEventListener('click', (e) => {
-    if (e.target === modal) closeModal();
-  });
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div class="md:col-span-2 space-y-6">
+        <div>
+          <h3 class="text-xs font-bold uppercase text-slate-400 mb-2">Descripción</h3>
+          <p id="modal-description" class="text-sm text-slate-700 dark:text-slate-300 leading-relaxed bg-slate-50 dark:bg-slate-950 p-3 rounded border border-slate-200 dark:border-slate-800/60"></p>
+        </div>
 
-  // Escuchar el evento que emiten las tarjetas al hacer clic
-  document.addEventListener('open-card-modal', (e: any) => {
-    const data = e.detail;
-    if (!data || !modal) return;
+        <div>
+          <h3 class="text-xs font-bold uppercase text-slate-400 mb-2">Criterios de Aceptación</h3>
+          <ul id="modal-criteria" class="space-y-2 text-sm text-slate-700 dark:text-slate-300"></ul>
+        </div>
+      </div>
 
-    // Actualizar Textos Básicos (buscando por ID de tu plantilla)
-    const setContent = (id: string, value: string) => {
-      const el = document.getElementById(id);
-      if (el) el.textContent = value;
-    };
+      <div class="bg-slate-50 dark:bg-slate-950 p-4 rounded-lg border border-slate-200 dark:border-slate-800/80 space-y-4 text-xs">
+        <div>
+          <span class="text-slate-400 block font-medium">Asignado</span>
+          <span class="font-semibold text-slate-700 dark:text-slate-200 flex items-center gap-1.5 mt-1">
+            <span class="w-4 h-4 rounded-full bg-emerald-600 text-white flex items-center justify-center text-[9px]">MG</span>
+            Magalí Godoy
+          </span>
+        </div>
 
-    setContent('modal-key', data.key || '');
-    setContent('modal-type', data.type || '');
-    setContent('modal-title', data.title || '');
-    setContent('modal-description', data.description || data.summary || 'Sin descripción disponible.');
-    setContent('modal-role', data.role || '');
-    setContent('modal-priority', data.priority || 'Medium');
-    setContent('modal-points', data.points ? `${data.points} pts` : '-');
+        <div>
+          <span class="text-slate-400 block font-medium">Rol Principal</span>
+          <span id="modal-role" class="inline-block mt-1 font-mono font-bold text-emerald-600 dark:text-emerald-400"></span>
+        </div>
 
-    // Renderizar Criterios de Aceptación (Buscamos la lista 'modal-criteria')
-    const criteriaList = document.getElementById('modal-criteria');
-    if (criteriaList) {
-      criteriaList.innerHTML = '';
-      if (data.criteria && Array.isArray(data.criteria) && data.criteria.length > 0) {
-        data.criteria.forEach((criterion: string) => {
-          const li = document.createElement('li');
-          li.className = 'flex items-start gap-2 bg-slate-50 dark:bg-slate-900/50 p-2.5 rounded-lg border border-slate-200/60 dark:border-slate-700/60 text-sm text-slate-700 dark:text-slate-300';
-          li.innerHTML = `<span class="text-emerald-500 font-bold">✓</span> <span>${criterion}</span>`;
-          criteriaList.appendChild(li);
-        });
-      } else {
-        criteriaList.innerHTML = '<li class="text-slate-400 italic text-xs">Sin criterios de aceptación especificados.</li>';
-      }
-    }
+        <div>
+          <span class="text-slate-400 block font-medium">Prioridad</span>
+          <span id="modal-priority" class="inline-block mt-1 font-semibold text-slate-700 dark:text-slate-200"></span>
+        </div>
 
-    // Mostrar el modal
-    modal.classList.remove('hidden');
-    modal.classList.add('flex');
-  });
-</script>
+        <div>
+          <span class="text-slate-400 block font-medium">Story Points</span>
+          <span id="modal-points" class="inline-block mt-1 bg-slate-200 dark:bg-slate-800 text-slate-800 dark:text-slate-200 font-bold font-mono px-2 py-0.5 rounded"></span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

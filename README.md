@@ -2,11 +2,11 @@
 
 > Un portfolio profesional con enfoque de producto, modelado bajo un entorno de gestión de tareas estilo Jira Kanban Board. Diseñado para centralizar competencias en Análisis Funcional, Control de Calidad (QA), Gestión de Proyectos (PM) y Desarrollo Frontend.
 
-[![Demo en Vivo](https://img.shields.io/badge/Demo-En%20Vivo-emerald?style=for-the-badge&logo=Vercel)](https://tu-enlace-de-vercel.com) <!-- Reemplaza con tu link real -->
-[![Licencia: MIT](https://img.shields.io/badge/Licencia-MIT-blue.svg?style=for-the-badge)](LICENSE)
+🔗 **Enlaces de interés:**
+[Ver Demo en Vivo (Magalí Godoy)](https://maggodoy-github-io-vercel.app) | [Licencia](./LICENSE)
+
 [![Astro](https://img.shields.io/badge/Astro-5.0-orange?style=for-the-badge&logo=astro)](https://astro.build)
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3.4-38B2AC?style=for-the-badge&logo=tailwind-css)](https://tailwindcss.com)
-
 ---
 
 ## 🖼️ Vista Previa del Sistema

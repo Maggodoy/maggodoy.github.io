@@ -44,6 +44,38 @@
           "priority": "Medium",
           "points": 5,
           "tags": ["Scrum", "OKRs", "Agile"]
+        },
+        {
+          "id": "UX-101",
+          "key": "UX-101",
+          "type": "Story",
+          "role": "FA",
+          "title": "Wireframing y Prototipado Interactivo Centrado en Usuario",
+          "summary": "Diseño de arquitectura de información y flujos de pantallas en Figma para validación temprana con stakeholders.",
+          "description": "Levantamiento de requerimientos de usuario para definir user personas y creación de prototipos navegables de alta fidelidad orientados a optimizar la experiencia de navegación.",
+          "criteria": [
+            "Dado un flujo crítico de usuario, cuando se diseñan los wireframes, se debe asegurar la coherencia con los requerimientos funcionales.",
+            "Dado el prototipo interactivo en Figma, cuando se presenta a los stakeholders, debe permitir completar el recorrido principal sin fricciones."
+          ],
+          "priority": "Medium",
+          "points": 5,
+          "tags": ["UX/UI", "Figma", "User Research", "Prototipado"]
+        },
+        {
+          "id": "QA-302",
+          "key": "QA-302",
+          "type": "Task",
+          "role": "QA",
+          "title": "Estrategia de Pruebas y Validación de Endpoints REST con Postman",
+          "summary": "Diseño de casos de prueba bajo estándares ISTQB y ejecución de pruebas de integración consumiendo APIs de backend.",
+          "description": "Automatización de validaciones de contratos y respuestas JSON mediante colecciones en Postman, asegurando la integridad de los datos persistidos en bases de datos relacionales y no relacionales.",
+          "criteria": [
+            "Dado un endpoint expuesto por el backend en Node.js, cuando se ejecutan las aserciones en Postman, el código de estado y la estructura JSON deben cumplir con el contrato.",
+            "Dado un flujo de datos completo, cuando se realizan pruebas de integración, se debe verificar la persistencia correcta en la base de datos."
+          ],
+          "priority": "High",
+          "points": 8,
+          "tags": ["ISTQB", "Postman", "Backend", "MongoDB", "SQL"]
         }
       ]
     },

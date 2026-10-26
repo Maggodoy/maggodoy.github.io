@@ -12,7 +12,7 @@ interface Props {
   points?: number;
   priority: string;
   tags: string[];
-  links?: {                              
+  links?: {
     demo?: string;
     docs?: string;
     notion?: string;
@@ -33,7 +33,7 @@ const {
   points, 
   priority, 
   tags = [],
-  links                                   
+  links
 } = Astro.props;
 
 // Normalización de propiedades para asegurar compatibilidad
@@ -61,7 +61,7 @@ const getTypeIcon = (issueType: string) => {
   data-criteria={JSON.stringify(finalCriteria)}
   data-points={finalPoints}
   data-priority={priority}
-  data-links={links ? JSON.stringify(links) : ''} 
+  data-links={links ? JSON.stringify(links) : ''}
 >
   <p class="text-xs font-medium text-slate-800 dark:text-slate-200 group-hover:text-emerald-600 dark:group-hover:text-emerald-400 mb-3">
     {summary}

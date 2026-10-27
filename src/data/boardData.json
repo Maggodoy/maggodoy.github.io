@@ -142,6 +142,29 @@
           "priority": "Low",
           "points": 5,
           "tags": ["BPMN", "Requerimientos", "AS-IS / TO-BE"]
+        },
+        {
+          "id": "FA-301",
+          "key": "FA-301",
+          "type": "Task",
+          "role": "Functional Analyst & Dev",
+          "title": "PetID: Sistema de Identificación QR para Mascotas",
+          "summary": "Solución fullstack de identificación ágil con alertas de contacto inmediato por WhatsApp (con ubicación) y llamadas directas en 1 clic.",
+          "description": "Diseño, especificación funcional y desarrollo fullstack (React, Node.js/Express, PostgreSQL/Supabase) para la gestión de mascotas mediante QR en collares o pretales. Permite la notificación directa de emergencia sin necesidad de instalar apps externas. Incluye documentación detallada de casos de uso y UX/UI en Notion y repositorio de código fuente en GitHub.",
+          "criteria": [
+            "Dado el escaneo de una placa QR, el sistema debe desplegar la vista pública de emergencia en menos de 2 segundos en dispositivos móviles.",
+            "Dado el botón de contacto 'Alerta por WhatsApp', al hacer clic se debe abrir la app con la ubicación actual precompilada en el mensaje.",
+            "Dado el acceso del dueño autenticado, solo este puede editar la información médica, vacunas y contactos de emergencia asociados al QR."
+          ],
+          "priority": "High",
+          "points": 8,
+          "tags": ["React", "Node.js", "PostgreSQL", "Supabase", "UX/UI", "API REST", "Notion", "GitHub"],
+          "links": {
+            "demo": "https://tu-proyecto.vercel.app",
+            "docs": "https://github.com/Maggodoy/mascotas-qr/blob/main/CASOS_DE_USO.md",
+            "notion": "https://app.notion.com/p/PetID-402ad231c1ac80fabd3ade78fc11cb49",
+            "github": "https://github.com/Maggodoy/mascotas-qr"
+          }
         }
       ]
     },

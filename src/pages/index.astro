@@ -1,27 +1,3 @@
----
-import Layout from '../layouts/Layout.astro';
-import Header from '../components/Header.astro';
-import Board from '../components/Board.astro';
-import CardModal from '../components/CardModal.astro';
-import boardData from '../data/boardData.json';
-
-const profile = boardData.profile;
-const columns = boardData.columns;
----
-
-<Layout title={`${profile.name} | Portfolio`} profile={profile}>
-  <div class="w-full">
-    <!-- Componente de Cabecera y Filtros -->
-    <Header profile={profile} />
-
-    <!-- Tablero Kanban Modular -->
-    <Board columns={columns} />
-
-    <!-- Modal de Tickets -->
-    <CardModal />
-  </div>
-</Layout>
-
 <script>
   // Lógica de filtrado por rol y apertura del modal de tarjetas
   const filterBtns = document.querySelectorAll('.filter-btn');
@@ -62,6 +38,10 @@ const columns = boardData.columns;
       const criteria = JSON.parse(card.getAttribute('data-criteria') || '[]');
       const points = card.getAttribute('data-points') || '';
       const priority = card.getAttribute('data-priority') || '';
+      
+      // 🔗 1. LEEMOS LOS LINKS DESDE EL ATRIBUTO DE LA TARJETA
+      const linksRaw = card.getAttribute('data-links');
+      const links = linksRaw ? JSON.parse(linksRaw) : null;
 
       document.getElementById('modal-key')!.textContent = key;
       document.getElementById('modal-type-icon')!.textContent = type === 'Story' ? '📗' : '🔹';
@@ -79,6 +59,32 @@ const columns = boardData.columns;
         </li>
       `).join('');
 
+      // 🔗 2. RENDERIZAMOS LOS BOTONES DE ENLACES DINÁMICAMENTE
+      const linksWrapper = document.getElementById('modal-links-wrapper');
+      const linksContainer = document.getElementById('modal-links');
+      
+      if (linksContainer) {
+        linksContainer.innerHTML = '';
+        if (links && Object.keys(links).length > 0) {
+          linksWrapper?.classList.remove('hidden');
+
+          if (links.demo) {
+            linksContainer.innerHTML += `<a href="${links.demo}" target="_blank" rel="noopener noreferrer" class="px-3 py-1.5 bg-emerald-600 hover:bg-emerald-700 text-white font-medium text-xs rounded transition shadow-sm">🔗 Demo en Vivo</a>`;
+          }
+          if (links.docs) {
+            linksContainer.innerHTML += `<a href="${links.docs}" target="_blank" rel="noopener noreferrer" class="px-3 py-1.5 bg-slate-800 hover:bg-slate-900 text-white font-medium text-xs rounded transition shadow-sm">📄 Casos de Uso</a>`;
+          }
+          if (links.notion) {
+            linksContainer.innerHTML += `<a href="${links.notion}" target="_blank" rel="noopener noreferrer" class="px-3 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-800 border border-slate-300 font-medium text-xs rounded transition shadow-sm dark:bg-slate-800 dark:text-slate-200 dark:border-slate-700">🎨 UX/UI (Notion)</a>`;
+          }
+          if (links.github) {
+            linksContainer.innerHTML += `<a href="${links.github}" target="_blank" rel="noopener noreferrer" class="px-3 py-1.5 bg-slate-900 hover:bg-black text-white font-medium text-xs rounded transition shadow-sm dark:bg-slate-800 dark:hover:bg-slate-700">💻 Código Fuente</a>`;
+          }
+        } else {
+          linksWrapper?.classList.add('hidden');
+        }
+      }
+
       modalOverlay?.classList.remove('hidden');
       modalOverlay?.classList.add('flex');
     });
@@ -88,6 +94,8 @@ const columns = boardData.columns;
     modalOverlay?.classList.remove('flex');
     modalOverlay?.classList.add('hidden');
   });
+
+  modalOverlay?.classList.remove('flex'); // Asegurar estado inicial oculto por si acaso
 
   modalOverlay?.addEventListener('click', (e) => {
     if (e.target === modalOverlay) {

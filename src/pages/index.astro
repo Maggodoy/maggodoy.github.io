@@ -1,5 +1,22 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Board from '../components/Board.astro';
+import CardModal from '../components/CardModal.astro';
+import boardData from '../data/boardData.json';
+---
+
+<Layout title="Magalí Godoy | Portfolio Agile & QA" profile={boardData.profile}>
+  <Header profile={boardData.profile} />
+  
+  <main>
+    <Board columns={boardData.columns} />
+  </main>
+
+  <CardModal />
+</Layout>
+
 <script>
-  // Lógica de filtrado por rol y apertura del modal de tarjetas
   const filterBtns = document.querySelectorAll('.filter-btn');
   const cards = document.querySelectorAll('.card-item');
 
@@ -17,9 +34,9 @@
       cards.forEach(card => {
         const cardRole = card.getAttribute('data-role');
         if (selectedRole === 'All' || cardRole === selectedRole) {
-          (card as HTMLElement).style.display = 'block';
+          card.style.display = 'block';
         } else {
-          (card as HTMLElement).style.display = 'none';
+          card.style.display = 'none';
         }
       });
     });
@@ -39,27 +56,27 @@
       const points = card.getAttribute('data-points') || '';
       const priority = card.getAttribute('data-priority') || '';
       
-      // 🔗 1. LEEMOS LOS LINKS DESDE EL ATRIBUTO DE LA TARJETA
       const linksRaw = card.getAttribute('data-links');
       const links = linksRaw ? JSON.parse(linksRaw) : null;
 
-      document.getElementById('modal-key')!.textContent = key;
-      document.getElementById('modal-type-icon')!.textContent = type === 'Story' ? '📗' : '🔹';
-      document.getElementById('modal-summary')!.textContent = summary;
-      document.getElementById('modal-description')!.textContent = description;
-      document.getElementById('modal-role')!.textContent = role;
-      document.getElementById('modal-priority')!.textContent = priority;
-      document.getElementById('modal-points')!.textContent = points;
+      document.getElementById('modal-key').textContent = key;
+      document.getElementById('modal-type-icon').textContent = type === 'Story' ? '📗' : '🔹';
+      document.getElementById('modal-summary').textContent = summary;
+      document.getElementById('modal-description').textContent = description;
+      document.getElementById('modal-role').textContent = role;
+      document.getElementById('modal-priority').textContent = priority;
+      document.getElementById('modal-points').textContent = points;
 
-      const criteriaList = document.getElementById('modal-criteria')!;
-      criteriaList.innerHTML = criteria.map((c: string) => `
-        <li class="flex items-start gap-2 bg-slate-50 dark:bg-slate-950 p-2 rounded border border-slate-200 dark:border-slate-800/40">
-          <input type="checkbox" checked disabled class="mt-1 accent-emerald-600">
-          <span>${c}</span>
-        </li>
-      `).join('');
+      const criteriaList = document.getElementById('modal-criteria');
+      if (criteriaList) {
+        criteriaList.innerHTML = criteria.map(c => `
+          <li class="flex items-start gap-2 bg-slate-50 dark:bg-slate-950 p-2 rounded border border-slate-200 dark:border-slate-800/40">
+            <input type="checkbox" checked disabled class="mt-1 accent-emerald-600">
+            <span>${c}</span>
+          </li>
+        `).join('');
+      }
 
-      // 🔗 2. RENDERIZAMOS LOS BOTONES DE ENLACES DINÁMICAMENTE
       const linksWrapper = document.getElementById('modal-links-wrapper');
       const linksContainer = document.getElementById('modal-links');
       
@@ -95,7 +112,7 @@
     modalOverlay?.classList.add('hidden');
   });
 
-  modalOverlay?.classList.remove('flex'); // Asegurar estado inicial oculto por si acaso
+  modalOverlay?.classList.remove('flex'); 
 
   modalOverlay?.addEventListener('click', (e) => {
     if (e.target === modalOverlay) {
